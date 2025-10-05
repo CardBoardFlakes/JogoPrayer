@@ -1,0 +1,43 @@
+  /* style.css */
+  h1 
+  {
+    font-family: fantasy;
+    font-size: 90px;
+    border: 10px ridge silver;
+    text-align: center;
+    background-image: url('https://poggers.com/cdn/shop/articles/fc64a40b3ed3c4376efe7af987465770_1216x684_crop_center.webp?v=1723676903');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: center;
+  }
+   
+  p
+  {
+    font-size: 25px;
+    font-family: fantasy;
+    border: 5px ridge silver;
+    .newspaper-columns {
+        column-count: 3; /* Divides content into three columns */
+        column-gap: 20px; /* Space between columns */
+      }
+  }
+
+html{
+  background: url(images/JogoDomain.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+a
+{
+  color: black;
+  font-family: fantasy;
+}
+  
+  img 
+  {
+      border: 55px ridge silver;
+  }
+  

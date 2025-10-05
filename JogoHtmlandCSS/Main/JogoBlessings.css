@@ -1,0 +1,18 @@
+html{
+    background: url(images/JogoatPrison.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+img 
+{
+    border: 55px ridge silver;
+}
+
+a
+{
+    color: silver;
+    font-family: fantasy;
+}
