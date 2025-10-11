@@ -1,4 +1,4 @@
-const sigils = ["trash", "Boooooo", "Garbage", "Get OUT", "NP this guy", "Fraudulent", "weak"];
+const sigils = ["trash", "Waste", "Garbage", "Get OUT", "NP this guy", "Fraudulent", "weak", "Junk", "Scum", "Vermin", "Rubbish", "Pathetic", "Clown", "Frail", "Feeble", "Puny", "Decrepit", "Powerless", "Vulnerable", "Losers", "Failures", "Disappointments", "Inferior", "Inadequate", "Defective", "Heinous", "Evil", "🐀", "🐭", "🤢", "🤡"];
 
 let sigilContainer = document.querySelector(".sigils-container");
 if (!sigilContainer) {
