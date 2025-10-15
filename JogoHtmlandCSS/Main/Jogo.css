@@ -57,6 +57,10 @@ a
   
   #king 
   {
-      border: 55px ridge red;
+    border: 55px solid #440000; /* Darker ridge/rock color */
+    border-radius: 20px; /* Optional: for a smoother volcano shape */
+    box-shadow: 0 0 10px rgba(255, 69, 0, 0.8), /* Inner red glow */
+              0 0 20px rgba(255, 140, 0, 0.6), /* Orange outer glow */
+              inset 0 0 10px #ff4500; /* Inner heat effect */
   }
   
