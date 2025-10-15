@@ -8,98 +8,136 @@
 <style>
 h1 
 {
-    color: black;
-    text-align: center;
-    vertical-align: center;
+  color: black;
+  text-align: center;
+  vertical-align: center;
 }
 
 p 
 {
-    font-family: fantasy;
-    color: silver;
+  font-family: dejaVu sans;
+  font-style: italic;
+  color: silver;
 }
 
 p2 
 {
-    background-color: orange;
-    font-size: 50px;
-    font-family: fantasy;
-    border: 15px groove silver;
+  background-color: orange;
+  font-size: 50px;
+  font-family: dejaVu sans;
+  font-style: italic;
+  border: 15px groove silver;
 }
 
 /* Particle Stuff */
 .particle {
-    position: absolute;
-    bottom: -200px;
-    border-radius: 50%;
-    opacity: 0.85;
-    animation: rise linear infinite;
-    z-index: -1; 
-    box-shadow: 0 0 15px rgba(255, 80, 0, 0.6);
+  position: absolute;
+  bottom: -200px;
+  border-radius: 50%;
+  opacity: 0.85;
+  animation: rise linear infinite;
+  z-index: -1; 
+  box-shadow: 0 0 15px rgba(255, 80, 0, 0.6);
 }
 
-@keyframes rise {
-    0% {
-      transform: translateY(0) scale(0.7);
-      opacity: 0.9;
-    }
-    100% {
-      transform: translateY(-110vh) scale(1.3);
-      opacity: 0;
-    }
+@keyframes rise 
+{
+  0% 
+  {
+    transform: translateY(0) scale(0.7);
+    opacity: 0.9;
+  }
+  100% 
+  {
+    transform: translateY(-110vh) scale(1.3);
+    opacity: 0;
+  }
 }
 
-.burst {
-    position: absolute;
-    bottom: -200px;
-    border-radius: 50%;
-    background: radial-gradient(circle, orange, red);
-    box-shadow: 0 0 25px rgba(255, 80, 0, 0.9);
-    opacity: 0.95;
-    animation: burstRise linear forwards;
-    z-index: -1;
+.burst 
+{
+  position: absolute;
+  bottom: -200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, orange, red);
+  box-shadow: 0 0 25px rgba(255, 80, 0, 0.9);
+  opacity: 0.95;
+  animation: burstRise linear forwards;
+  z-index: -1;
 }
 
-@keyframes burstRise {
-    0% {
-      transform: translateY(0) scale(0.8);
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(-120vh) scale(1.8);
-      opacity: 0;
-    }
+@keyframes burstRise 
+{
+  0% 
+  {
+    transform: translateY(0) scale(0.8);
+    opacity: 1;
+    
+  }
+
+  100% 
+  {
+    transform: translateY(-120vh) scale(1.8);
+    opacity: 0;
+  }
 }
 
 .heat-haze 
 {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    background: repeating-linear-gradient
-    (
-      transparent,
-      rgba(255, 80, 0, 0.05) 2px,
-      transparent 4px
-    );
-    mix-blend-mode: overlay;
-    animation: shimmer 5s ease-in-out infinite alternate;
-    pointer-events: none;
-    z-index: -2;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: repeating-linear-gradient
+  (
+    transparent,
+    rgba(255, 80, 0, 0.05) 2px,
+    transparent 4px
+  );
+
+  mix-blend-mode: overlay;
+  animation: shimmer 5s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: -2;
 }
 
 @keyframes shimmer 
 {
-    from { transform: translateY(0) skewY(0.5deg); }
-    to   { transform: translateY(-20px) skewY(-0.5deg); }
+  from { transform: translateY(0) skewY(0.5deg); }
+  to   { transform: translateY(-20px) skewY(-0.5deg); }
 }
 
 body 
 {
-    margin: 0;
-    height: 100vh;
-    overflow-x: hidden;
-    overflow-y: auto;
+  margin: 0;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  min-height: 200vh;
+}
+
+#myVideo 
+{
+  display: none; 
+} 
+        
+#playButton 
+{
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+}
+
+#playButton img 
+{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
 }
 /* End Particle shenanagans */
 
@@ -107,8 +145,55 @@ body
 </head>
 
 <body>
+
+<video id="myVideo" loop>
+<source src="video/relax.mp4" type="video/mp4">
+</video>
+
+<button id="playButton">
+    <img src="images/JogoWin.png">
+</button>
+
+<script>
+    const myVideo = document.getElementById('myVideo');
+    const playButton = document.getElementById('playButton');
+    myVideo.disableRemotePlayback = true;
+
+    playButton.addEventListener('click', () => 
+    {
+      if (myVideo.paused) {
+        myVideo.play();
+        myVideo.style.display = 'block';
+        playButton.style.display = 'none';
+        if (myVideo.requestFullscreen) myVideo.requestFullscreen();
+      } 
+
+        else 
+        {
+          myVideo.pause();
+        }
+    });
+
+function onFsChange() 
+{
+    const active = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+  if (!active) 
+  {
+    myVideo.pause();
+    myVideo.style.display = 'none';
+    playButton.style.display = 'block';
+  }
+}
+
+document.addEventListener('fullscreenchange', onFsChange);
+document.addEventListener('webkitfullscreenchange', onFsChange);
+document.addEventListener('mozfullscreenchange', onFsChange);
+document.addEventListener('MSFullscreenChange', onFsChange);
+</script>
+
 <center>
-<img src ="images/Jogo.png" alt= "The True King" style="width:700px;height:850px;">
+
+<img src ="images/Jogo.png" alt= "The True King" style="width:700px;height:850px;" id="King">
 </center>
 
 <h1>JOGO'S SOVERIGNTY</h1>
@@ -321,7 +406,6 @@ body
 <a href="Jogo-listoffrauds.html">Click to see the frauds (prepare your eyes)</a>
 <br>
 <a href="JogoApologyForm.html">Fill out an apology form</a>
-
 
 <!--Particle-->
 <script>
