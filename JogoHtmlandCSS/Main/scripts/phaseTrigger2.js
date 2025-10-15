@@ -1,7 +1,7 @@
 (function() {
     let buffer = "";
     const targetPhrase = "king";
-    const urlToOpen = "Jogo.html";
+    const urlToOpen = "JogoHtmlandCSS/Main/Jogo.html";
   
     document.addEventListener("keydown", function(event) {
       if (event.key.length === 1) {
